@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fourthway Labs — Coming Soon</title>
+    <meta name="description" content="Fourthway Labs — Web Design, IT Consulting & AI Automation. Awakening digital potential through conscious technology.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #8b7355;
+            --gold-light: #a6896a;
+            --dark: #faf7f2;
+            --dark-surface: #f0ebe3;
+            --text: #3a3530;
+            --text-muted: #8a8279;
+            --accent: #6b8f71;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Subtle warm background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(107, 143, 113, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(139, 115, 85, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 32px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-left: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-status {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            text-align: center;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Enneagram SVG */
+        .enneagram-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+        }
+
+        .enneagram-svg {
+            width: 100%;
+            height: 100%;
+            animation: slowRotate 120s linear infinite;
+        }
+
+        @keyframes slowRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .enneagram-svg circle {
+            fill: none;
+            stroke: var(--gold);
+            stroke-width: 0.8;
+            opacity: 0.5;
+        }
+
+        .enneagram-svg .inner-lines {
+            fill: none;
+            stroke: var(--gold);
+            stroke-width: 0.6;
+            opacity: 0.4;
+        }
+
+        .enneagram-svg .triangle {
+            fill: none;
+            stroke: var(--gold-light);
+            stroke-width: 1;
+            opacity: 0.6;
+        }
+
+        .enneagram-svg .hexad {
+            fill: none;
+            stroke: var(--gold);
+            stroke-width: 0.8;
+            opacity: 0.45;
+        }
+
+        .enneagram-svg .point {
+            fill: var(--gold);
+            opacity: 0.8;
+        }
+
+        .center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .center-text .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .center-text .word {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--text);
+        }
+
+        .hero-content h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero-content .tagline {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Three Ways / Three Services */
+        .three-ways {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .way {
+            padding: 40px 28px;
+            text-align: center;
+            background: var(--dark-surface);
+            border: 1px solid rgba(139, 115, 85, 0.12);
+            transition: all 0.4s ease;
+            border-radius: 4px;
+        }
+
+        .way:hover {
+            background: rgba(139, 115, 85, 0.06);
+            border-color: rgba(139, 115, 85, 0.25);
+        }
+
+        .way-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .way h3 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .way p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .way .icon {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            opacity: 0.8;
+        }
+
+        /* Fourth Way highlight */
+        .fourth-section {
+            text-align: center;
+            margin-top: 80px;
+            padding: 60px 24px;
+            position: relative;
+        }
+
+        .fourth-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, var(--gold));
+            opacity: 0.4;
+        }
+
+        .fourth-section .label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .fourth-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 400;
+            color: var(--text);
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .fourth-section h2 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        /* Quote */
+        .quote-section {
+            text-align: center;
+            padding: 80px 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .quote-section blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            font-style: italic;
+            color: var(--text-muted);
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .quote-section blockquote::before {
+            content: '\201C';
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            position: absolute;
+            top: -30px;
+            left: -10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .quote-section .attribution {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.6;
+        }
+
+        /* Contact / Coming Soon */
+        .coming-soon {
+            text-align: center;
+            padding: 60px 24px 40px;
+        }
+
+        .coming-soon .notify-form {
+            display: flex;
+            gap: 12px;
+            max-width: 440px;
+            margin: 30px auto 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .notify-form input {
+            flex: 1;
+            min-width: 240px;
+            padding: 14px 20px;
+            background: var(--dark-surface);
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            color: var(--text);
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .notify-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .notify-form input:focus {
+            border-color: var(--gold);
+        }
+
+        .notify-form button {
+            padding: 14px 32px;
+            background: var(--gold);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .notify-form button:hover {
+            background: var(--gold-light);
+        }
+
+        .coming-soon .subtext {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+        }
+
+        /* Services preview */
+        .services-hint {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .services-hint span {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        .services-hint span::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: 0.4;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 24px 40px;
+            border-top: 1px solid rgba(139, 115, 85, 0.1);
+        }
+
+        footer .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            opacity: 0.6;
+        }
+
+        footer .footer-links {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        footer .footer-links a {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        footer .copyright {
+            margin-top: 24px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            opacity: 0.4;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .fade-in-delay-1 { animation-delay: 0.2s; }
+        .fade-in-delay-2 { animation-delay: 0.4s; }
+        .fade-in-delay-3 { animation-delay: 0.6s; }
+        .fade-in-delay-4 { animation-delay: 0.8s; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive — Tablet */
+        @media (max-width: 768px) {
+            .three-ways {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                gap: 12px;
+            }
+
+            .hero {
+                min-height: 70vh;
+                gap: 30px;
+            }
+
+            .enneagram-container {
+                width: 260px;
+                height: 260px;
+            }
+
+            .center-text .number {
+                font-size: 3.2rem;
+            }
+
+            .fourth-section {
+                margin-top: 50px;
+                padding: 40px 16px;
+            }
+
+            .quote-section {
+                padding: 50px 16px;
+            }
+
+            .services-hint {
+                gap: 20px;
+            }
+        }
+
+        /* Responsive — Mobile */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 8px;
+                padding: 24px 0;
+            }
+
+            .hero {
+                min-height: 60vh;
+                gap: 24px;
+            }
+
+            .enneagram-container {
+                width: 200px;
+                height: 200px;
+            }
+
+            .center-text .number {
+                font-size: 2.5rem;
+            }
+
+            .center-text .word {
+                font-size: 0.55rem;
+                letter-spacing: 3px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content .tagline {
+                font-size: 0.95rem;
+                margin-top: 14px;
+            }
+
+            .three-ways {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                gap: 10px;
+                margin-top: 40px;
+            }
+
+            .way {
+                padding: 28px 20px;
+            }
+
+            .way-number {
+                font-size: 1.6rem;
+                margin-bottom: 10px;
+            }
+
+            .fourth-section h2 {
+                font-size: 1.3rem;
+            }
+
+            .quote-section blockquote {
+                font-size: 1.1rem;
+            }
+
+            .notify-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .notify-form input {
+                min-width: unset;
+                width: 100%;
+            }
+
+            .notify-form button {
+                width: 100%;
+            }
+
+            .services-hint {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+            }
+
+            footer .footer-links {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="fade-in">
+            <div class="logo">Fourthway Labs</div>
+            <div class="nav-status">Coming Soon</div>
+        </nav>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="enneagram-container fade-in fade-in-delay-1">
+                <svg class="enneagram-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer circle -->
+                    <circle cx="100" cy="100" r="90" />
+
+                    <!-- 9 points of the enneagram (starting from top, going clockwise) -->
+                    <!-- Point 9 (top): 100, 10 -->
+                    <!-- Point 1: 153.5, 22.6 -->
+                    <!-- Point 2: 185.6, 65.5 -->
+                    <!-- Point 3: 185.6, 134.5 -->
+                    <!-- Point 4: 153.5, 177.4 -->
+                    <!-- Point 5: 100, 190 -->
+                    <!-- Point 6: 46.5, 177.4 -->
+                    <!-- Point 7: 14.4, 134.5 -->
+                    <!-- Point 8: 14.4, 65.5 -->
+
+                    <!-- Triangle (3-6-9) -->
+                    <polygon class="triangle" points="100,10 46.5,177.4 153.5,177.4" />
+
+                    <!-- Hexad (1-4-2-8-5-7) -->
+                    <polyline class="hexad" points="153.5,22.6 153.5,177.4 185.6,65.5 14.4,65.5 100,190 14.4,134.5 153.5,22.6" />
+
+                    <!-- Points -->
+                    <circle class="point" cx="100" cy="10" r="3" />
+                    <circle class="point" cx="153.5" cy="22.6" r="2.5" />
+                    <circle class="point" cx="185.6" cy="65.5" r="2.5" />
+                    <circle class="point" cx="185.6" cy="134.5" r="2.5" />
+                    <circle class="point" cx="153.5" cy="177.4" r="2.5" />
+                    <circle class="point" cx="100" cy="190" r="2.5" />
+                    <circle class="point" cx="46.5" cy="177.4" r="2.5" />
+                    <circle class="point" cx="14.4" cy="134.5" r="2.5" />
+                    <circle class="point" cx="14.4" cy="65.5" r="2.5" />
+                </svg>
+                <div class="center-text">
+                    <div class="number">IV</div>
+                    <div class="word">The Fourth Way</div>
+                </div>
+            </div>
+
+            <div class="hero-content fade-in fade-in-delay-2">
+                <h1>Beyond the <em>three ways</em>,<br>there is a fourth.</h1>
+                <p class="tagline">
+                    We integrate design, technology, and intelligence into
+                    one conscious approach — building digital solutions that
+                    awaken your business potential.
+                </p>
+            </div>
+        </section>
+
+        <!-- Three Ways → Three Services -->
+        <section class="three-ways fade-in fade-in-delay-3">
+            <div class="way">
+                <div class="way-number">I</div>
+                <h3>The Body</h3>
+                <p>Web Design</p>
+                <div style="margin-top: 12px; font-size: 0.78rem; color: var(--text-muted); line-height: 1.6;">
+                    Crafting the visible form — websites that embody your vision with precision and beauty.
+                </div>
+            </div>
+            <div class="way">
+                <div class="way-number">II</div>
+                <h3>The Mind</h3>
+                <p>IT Consulting</p>
+                <div style="margin-top: 12px; font-size: 0.78rem; color: var(--text-muted); line-height: 1.6;">
+                    Strategic thinking and architecture — conscious decisions that align technology with purpose.
+                </div>
+            </div>
+            <div class="way">
+                <div class="way-number">III</div>
+                <h3>The Spirit</h3>
+                <p>AI Automation</p>
+                <div style="margin-top: 12px; font-size: 0.78rem; color: var(--text-muted); line-height: 1.6;">
+                    Intelligent systems that work while you evolve — automation as a path to higher efficiency.
+                </div>
+            </div>
+        </section>
+
+        <!-- The Fourth Way -->
+        <section class="fourth-section fade-in fade-in-delay-4">
+            <div class="label">The Fourth Way</div>
+            <h2>
+                When body, mind, and spirit work as <em>one</em> —
+                that is when transformation begins.
+            </h2>
+        </section>
+
+        <!-- Gurdjieff Quote -->
+        <section class="quote-section">
+            <blockquote>
+                Man lives his life in sleep, and in sleep he dies.
+                Only by awakening can he find what is real.
+            </blockquote>
+            <div class="attribution">G.I. Gurdjieff</div>
+        </section>
+
+        <!-- Coming Soon / Notify -->
+        <section class="coming-soon">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; color: var(--text);">
+                Something is <em style="color: var(--gold); font-style: italic;">awakening</em>.
+            </h2>
+            <p style="color: var(--text-muted); margin-top: 12px; font-size: 0.95rem;">
+                We're building something conscious. Be the first to know.
+            </p>
+
+            <form class="notify-form" id="notifyForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
+                <input type="email" id="emailInput" name="email" placeholder="your@email.com" required>
+                <input type="hidden" name="_subject" value="New Fourthway Labs subscriber!">
+                <button type="submit">Notify Me</button>
+            </form>
+            <p class="subtext">No spam. Only awakening.</p>
+
+            <div class="services-hint">
+                <span>Web Design</span>
+                <span>IT Consulting</span>
+                <span>AI Automation</span>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-logo">Fourthway Labs</div>
+            <div class="footer-links">
+                <a href="mailto:hello@fourthwaylabs.com">hello@fourthwaylabs.com</a>
+            </div>
+            <div class="copyright">&copy; 2026 Fourthway Labs. All rights reserved.</div>
+        </footer>
+    </div>
+
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const btn = e.target.querySelector('button');
+            btn.textContent = 'Thank You';
+            btn.style.background = '#6b8f71';
+            btn.style.color = '#fff';
+            document.getElementById('emailInput').value = '';
+            setTimeout(() => {
+                btn.textContent = 'Notify Me';
+                btn.style.background = '';
+                btn.style.color = '';
+            }, 3000);
+        }
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.way, .fourth-section, .quote-section, .coming-soon').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
